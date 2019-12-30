@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import ReactModal from 'react-modal';
+import Popup from 'reactjs-popup';
 
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 
@@ -40,24 +40,13 @@ export default function Suport() {
 
   const [answer, setAnswer] = useState('');
 
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
-
   const answerSize = useMemo(() => {
     return 255 - answer.length;
   }, [answer]);
 
   async function loadSuport() {
     try {
-      const response = await api.get('/students/help-orders', {
+      const response = await api.get('/students/help-orders/all', {
         params: { page, pageLimit: 10 },
       });
       if (page === 1) {
@@ -185,12 +174,7 @@ export default function Suport() {
         </Pagination>
       </Cover>
 
-      <ReactModal
-        isOpen={showModal}
-        onRequestClose={() => setShowModal(false)}
-        style={customStyles}
-        ariaHideApp={false}
-      >
+      <Popup open={showModal} onClose={() => setShowModal(false)}>
         <ModalContainer>
           <ModalForm
             initialData={modalHelpOrder}
@@ -217,7 +201,7 @@ export default function Suport() {
             <button type="submit">Responder aluno</button>
           </ModalForm>
         </ModalContainer>
-      </ReactModal>
+      </Popup>
     </Container>
   );
 }

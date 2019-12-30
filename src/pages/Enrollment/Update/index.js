@@ -19,7 +19,8 @@ import {
 } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 
-import { Container, FormInserts, Nav, InputFields } from '~/styles/default';
+import { FormInserts, Nav, InputFields } from '~/styles/default';
+import { Container } from '../styles';
 import api from '~/services/api';
 import { formatPrice } from '~/util/format';
 

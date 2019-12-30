@@ -271,11 +271,11 @@ export const InputFields = styled.div`
   label {
     display: flex;
     flex-direction: column;
-    min-width: 400px;
     align-items: flex-start;
     color: #444;
     font-size: 14px;
     font-weight: bold;
+    margin-right: 10px;
 
     input {
       border: 1px solid #ddd;

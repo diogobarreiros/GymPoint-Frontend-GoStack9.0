@@ -141,10 +141,8 @@ export const Content = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  max-width: 450px;
-  min-width: 350px;
-  max-height: 425px;
-  min-height: 325px;
+  width: 100%;
+  height: 100%;
 
   form {
   }
@@ -188,6 +186,12 @@ export const ModalForm = styled(Form)`
   margin-top: 25px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+
+  textarea {
+    font-family: Roboto;
+    font-size: 14px;
+  }
 
   label {
     display: flex;
@@ -231,7 +235,7 @@ export const ModalForm = styled(Form)`
 
 export const ModalInput = styled(Input)`
   background: #fff;
-  height: 127px;
+  height: 100%;
   width: 100%;
   padding: 10px;
   margin: 10px 0;
