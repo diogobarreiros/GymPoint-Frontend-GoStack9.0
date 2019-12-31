@@ -45,17 +45,21 @@ export default function Suport() {
   }, [answer]);
 
   async function loadSuport() {
+    const pageLimit = 10;
     try {
       const response = await api.get('/students/help-orders/all', {
-        params: { page, pageLimit: 10 },
+        params: { page, pageLimit },
       });
       if (page === 1) {
         setPrevDisable(true);
       }
-      if (response.data.length < 10) {
+      if (
+        response.data.count <= pageLimit ||
+        page >= response.data.count / pageLimit
+      ) {
         setNextDisable(true);
       }
-      setHelpOrder(response.data);
+      setHelpOrder(response.data.rows);
     } catch (e) {
       if (e.response.data.error === 'Token invalid') {
         dispatch(signOut());
