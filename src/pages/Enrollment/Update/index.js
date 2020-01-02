@@ -52,7 +52,7 @@ export default function EnrollmentUpdate({ match }) {
           .get('enrollments', {
             params: { page: 1, pageLimit: 100 },
           })
-          .then(r => r.data)
+          .then(r => r.data.rows)
           .then(d => d.filter(e => e.id === Number(id)));
 
         setStartDate(parseISO(enrollment[0].start_date));
@@ -65,7 +65,7 @@ export default function EnrollmentUpdate({ match }) {
           .get('plans', {
             params: { page: 1, pageLimit: 100 },
           })
-          .then(r => r.data)
+          .then(r => r.data.rows)
           .then(d =>
             d.map(p => ({
               label: p.title,
@@ -193,7 +193,7 @@ export default function EnrollmentUpdate({ match }) {
       .get('students', {
         params: { name: `${inputValue}`, page: 1, pageLimit: 100 },
       })
-      .then(r => r.data)
+      .then(r => r.data.rows)
       .then(r =>
         r.map(student => ({
           label: student.name,

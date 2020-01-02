@@ -138,6 +138,13 @@ export const Content = styled.div`
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+
+  span {
+    color: #fb6f91;
+    align-self: flex-start;
+    margin: 0 0 10px;
+    font-weight: bold;
+  }
 `;
 
 export const ModalContainer = styled.div`

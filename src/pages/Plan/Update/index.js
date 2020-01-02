@@ -55,7 +55,7 @@ export default function PlanUpdate({ match }) {
         const response = await api.get('plans', {
           params: { page: 1, pageLimit: 100 },
         });
-        const data = response.data.find(p => p.id === Number(id));
+        const data = response.data.rows.find(p => p.id === Number(id));
         setPlan(data);
         setPrice(data.price);
         setDuration(data.duration);

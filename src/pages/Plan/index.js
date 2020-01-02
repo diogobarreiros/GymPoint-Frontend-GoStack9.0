@@ -33,11 +33,12 @@ export default function Plans() {
   const [nextDisable, setNextDisable] = useState(false);
 
   async function loadPlanList() {
+    const pageLimit = 10;
     try {
       const response = await api.get('plans', {
-        params: { page, pageLimit: 10 },
+        params: { page, pageLimit },
       });
-      const data = response.data.map(plan => ({
+      const data = response.data.rows.map(plan => ({
         ...plan,
         durationFormatted:
           plan.duration === 1
@@ -50,7 +51,10 @@ export default function Plans() {
       if (page === 1) {
         setPrevDisable(true);
       }
-      if (response.data.length < 10) {
+      if (
+        response.data.count <= pageLimit ||
+        page >= response.data.count / pageLimit
+      ) {
         setNextDisable(true);
       }
     } catch (e) {

@@ -36,17 +36,21 @@ export default function Enrollments() {
   const [nextDisable, setNextDisable] = useState(false);
 
   async function loadEnrollment() {
+    const pageLimit = 10;
     try {
       const response = await api.get('enrollments', {
-        params: { page, pageLimit: 10 },
+        params: { page, pageLimit },
       });
       if (page === 1) {
         setPrevDisable(true);
       }
-      if (response.data.length < 10) {
+      if (
+        response.data.count <= pageLimit ||
+        page >= response.data.count / pageLimit
+      ) {
         setNextDisable(true);
       }
-      const data = response.data.map(enrollment => ({
+      const data = response.data.rows.map(enrollment => ({
         ...enrollment,
         startDateFormatted: format(
           parseISO(enrollment.start_date),

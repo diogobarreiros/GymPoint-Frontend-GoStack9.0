@@ -62,7 +62,7 @@ export default function EnrollmentCreate() {
         .get('plans', {
           params: { page: 1, pageLimit: 100 },
         })
-        .then(r => r.data)
+        .then(r => r.data.rows)
         .then(d =>
           d.map(p => ({
             label: p.title,
@@ -153,7 +153,7 @@ export default function EnrollmentCreate() {
       .get('students', {
         params: { name: `${inputValue}`, page: 1, pageLimit: 100 },
       })
-      .then(r => r.data)
+      .then(r => r.data.rows)
       .then(r =>
         r.map(student => ({
           label: student.name,

@@ -38,15 +38,19 @@ export default function Students() {
   const [nextDisable, setNextDisable] = useState(false);
 
   async function loadStudentList() {
+    const pageLimit = 10;
     try {
       const response = await api.get('students', {
-        params: { q: name, page, pageLimit: 10 },
+        params: { q: name, page, pageLimit },
       });
-      setStudents(response.data);
+      setStudents(response.data.rows);
       if (page === 1) {
         setPrevDisable(true);
       }
-      if (response.data.length < 10) {
+      if (
+        response.data.count <= pageLimit ||
+        page >= response.data.count / pageLimit
+      ) {
         setNextDisable(true);
       }
     } catch (e) {
