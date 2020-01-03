@@ -6,6 +6,21 @@ export const Container = styled.div`
   margin: 34px 300px;
   min-width: 700px;
 
+  span {
+    color: #fb6f91;
+    align-self: flex-start;
+    margin: 0 0 10px;
+    font-weight: bold;
+  }
+
+  .popup-content {
+    display: flex;
+    max-width: 450px;
+    max-height: 425px;
+    border-radius: 4px;
+    flex-direction: column;
+  }
+
   .nohelp {
     display: flex;
     width: 100%;
@@ -138,27 +153,14 @@ export const Content = styled.div`
   padding: 20px;
   background: #fff;
   border-radius: 4px;
-
-  span {
-    color: #fb6f91;
-    align-self: flex-start;
-    margin: 0 0 10px;
-    font-weight: bold;
-  }
 `;
 
 export const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
+  padding: 20px;
 
   form {
-  }
-
-  span {
-    color: #fb6f91;
-    align-self: flex-start;
-    margin: 0 0 10px;
-    font-weight: bold;
   }
 `;
 
@@ -194,11 +196,6 @@ export const ModalForm = styled(Form)`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  textarea {
-    font-family: Roboto;
-    font-size: 14px;
-  }
 
   label {
     display: flex;
@@ -248,9 +245,14 @@ export const ModalInput = styled(Input)`
   margin: 10px 0;
   border: ${props => (props.readOnly ? 0 : '1px solid #ddd')};
   border-radius: 4px;
+  font-family: Roboto;
   font-size: 16px;
   color: #666;
   font-weight: normal;
+
+  &:focus {
+    border: 1px solid #ee4d64;
+  }
 
   &::-webkit-resizer {
     visibility: hidden;
@@ -271,7 +273,7 @@ export const ModalInput = styled(Input)`
   }
 `;
 
-export const AnswerSize = styled.span`
+export const AnswerSize = styled.label`
   text-align: right;
   margin: 0 10px;
   font-size: 12px;
