@@ -132,7 +132,7 @@ export default function Suport() {
           <table>
             <thead>
               <tr>
-                <td>Aluno</td>
+                <td>ALUNO</td>
                 <td />
               </tr>
             </thead>

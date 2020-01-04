@@ -57,10 +57,13 @@ export const Content = styled.div`
     }
 
     span {
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
       align-self: flex-end;
       font-family: Roboto;
       font-size: 12px;
-      color: red;
       margin-top: -15px;
       margin-bottom: 10px;
     }

@@ -11,8 +11,9 @@ export const Container = styled.div`
     }
   }
   span {
-    margin-left: 10px;
-    color: red;
-    font-size: 14px;
+    color: #fb6f91;
+    align-self: flex-start;
+    margin: 0 0 10px;
+    font-weight: bold;
   }
 `;

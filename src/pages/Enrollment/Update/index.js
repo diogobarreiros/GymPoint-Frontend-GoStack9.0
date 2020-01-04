@@ -43,7 +43,7 @@ export default function EnrollmentUpdate({ match }) {
   const [plans, setPlans] = useState({});
   const [plan, setPlan] = useState({});
 
-  const [newStudent, setNewStudent] = useState({});
+  const [oldStudent, setOldStudent] = useState({});
 
   useEffect(() => {
     async function loadManageEnrollment() {
@@ -56,7 +56,8 @@ export default function EnrollmentUpdate({ match }) {
           .then(d => d.filter(e => e.id === Number(id)));
 
         setStartDate(parseISO(enrollment[0].start_date));
-        setNewStudent({
+        setNewDate(parseISO(enrollment[0].start_date));
+        setOldStudent({
           label: enrollment[0].student.name,
           value: enrollment[0].student.id,
         });
@@ -119,17 +120,17 @@ export default function EnrollmentUpdate({ match }) {
   }, [plan]);
 
   const initialData = useMemo(() => {
-    if (!!end_date && !!newStudent && !!plan && !!startDate && !!totalPrice) {
+    if (!!end_date && !!oldStudent && !!plan && !!startDate && !!totalPrice) {
       return {
         end_date,
         totalPrice,
         plan,
         start_date: startDate,
-        student: newStudent,
+        student: oldStudent,
       };
     }
     return {};
-  }, [end_date, newStudent, plan, startDate, totalPrice]);
+  }, [end_date, oldStudent, plan, startDate, totalPrice]);
 
   async function handleSubmit(data) {
     try {
@@ -137,8 +138,10 @@ export default function EnrollmentUpdate({ match }) {
 
       const dateNowComp = `${dateNow.getDate()}/${dateNow.getMonth() +
         1}/${dateNow.getFullYear()}`;
-      const dateFormComp = `${data.start_date.getDate()}/${data.start_date.getMonth() +
-        1}/${data.start_date.getFullYear()}`;
+      const dateFormComp = data.start_date
+        ? `${data.start_date.getDate()}/${data.start_date.getMonth() +
+            1}/${data.start_date.getFullYear()}`
+        : dateNowComp;
       let startDateNow;
 
       if (dateNowComp === dateFormComp) {
@@ -160,15 +163,15 @@ export default function EnrollmentUpdate({ match }) {
         newData = {
           student_id: data.student.value
             ? data.student.value
-            : newStudent.value,
+            : oldStudent.value,
           plan_id: data.plan.value ? data.plan.value : plan.value,
-          start_date: data.start_date,
+          start_date: data.start_date ? data.start_date : startDateNow,
         };
       } else {
         newData = {
           student_id: data.student.value
             ? data.student.value
-            : newStudent.value,
+            : oldStudent.value,
           plan_id: data.plan.value ? data.plan.value : plan.value,
           start_date: startDateNow,
         };

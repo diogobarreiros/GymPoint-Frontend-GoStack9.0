@@ -204,6 +204,10 @@ export const FormInserts = styled.div`
     font-weight: bold;
   }
 
+  input.readOnly {
+    background: #f5f5f5;
+  }
+
   input {
     &:focus {
       border: 1px solid #ee4d64;
@@ -294,11 +298,6 @@ export const InputFields = styled.div`
       background: #f5f5f5;
       max-width: 198px;
     }
-
-    > span {
-      color: red;
-      font-weight: normal;
-    }
   }
   div.formline {
     display: flex;
@@ -306,11 +305,6 @@ export const InputFields = styled.div`
 
     strong {
       margin-bottom: auto;
-    }
-
-    span {
-      margin: 0;
-      font-weight: normal;
     }
   }
 `;

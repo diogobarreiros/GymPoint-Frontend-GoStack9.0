@@ -214,9 +214,10 @@ export const ModalForm = styled(Form)`
     }
 
     > span {
-      color: red;
-      font-size: 14px;
-      padding: 5px;
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
     }
   }
 
